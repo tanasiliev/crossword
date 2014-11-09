@@ -1,0 +1,198 @@
+#create-box
+{   
+    border: solid 1px silver;
+    width: 220px;
+    min-height:120px;
+    background-color: #F3F3F3; 
+    font-family:Georgia;
+}
+
+#create-box table td 
+{    
+    text-align :center;
+     width: 90px;
+     
+}     
+ 
+#wrapper-content 
+{
+     border: solid 1px;
+     display:none;
+     border-left: none;
+     border-bottom: none;
+     
+}
+
+#wrapper-tool
+{   
+     position :fixed;
+     top: 20px;
+     border: solid 1px silver;
+     width : 299px;
+     min-height : 400px;
+     background-color: #F3F3F3;
+     display:none; 
+}
+
+.letter 
+{
+     position:relative;
+     width: 50px;
+     height :50px;
+     border-left: solid 1px;
+     border-bottom: solid 1px;
+     float:left;   
+}
+.letter p
+{
+  text-align :center;  
+}
+
+.letter span 
+{  
+    position:absolute;    
+}
+
+.H-rigth-arrow 
+{
+  top: 17px; left: 5px;
+  
+}
+.H-down-arrow 
+{
+  top: 4px; left: 18px; 
+}
+.V-rigth-arrow 
+{
+   top: 18px; left: 5px;
+}
+.V-down-arrow 
+{
+   top: 5px; left: 17px;
+}
+.V-left-arrow 
+{
+   top: 18px; left: 33px;
+}
+
+.rotate 
+{
+    -webkit-transform:rotate(90deg);
+    -ms-transform:rotate(90deg); /* IE 9 */
+    -moz-transform:rotate(90deg); /* Firefox */
+    -o-transform:rotate(90deg); /* Opera */
+}
+
+.t_letter
+{  
+    display: block;
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    border: solid 2px;
+    border-radius: 3px;
+    width: 56px;
+    height: 56px;
+    z-index: 1;
+    background-color: #fff;
+    text-align:center;
+}
+
+.t_letter p
+{
+   display:none; 
+}
+
+
+.t_letter span
+{ 
+   position:relative;
+   font-family:Times New Roman;
+   font-size: 11px;
+   line-height: 0.85em;  
+}
+
+
+#w-description {
+    width :301px; 
+    height:100px;
+    background-image: url('../img/textarea.jpg')
+}
+#triangle 
+{
+    width: 12px;
+}
+
+#wrapper-tool input 
+{
+  margin:-2px 0px -1px -1px;
+}
+
+#wrapper-tool span 
+{ 
+  height:23px; 
+  font-family:Georgia;
+  padding-left: 10px;
+  display:block;
+  background-color: #D6D6D5;
+}
+
+#wrapper-tool textarea 
+{
+  margin:-2px 0px -1px -1px;
+}
+
+#wrapper-tool form 
+{
+    margin-left: 25px;
+}   
+
+#wrapper-tool label:hover
+{
+    cursor:pointer;
+}
+
+#ErrorMsg li 
+{
+  color: Red;
+}
+
+#Text
+{
+  display : none;
+}
+
+#wrapper-tool button
+{
+    height: 30px;
+}
+
+#dictionary 
+{    
+    position: absolute;
+    top: 300px;
+    left:300px;
+    border: solid 1px silver;
+    width : 640px;
+    height : 125px;
+    background-color: #F3F3F3;
+    display:none; 
+    z-index: 1;
+}
+
+#dictionary textarea
+{
+     border: solid 1px silver;
+     width : 640px;
+     height : 80px;
+}
+
+#dictionary button
+{
+  float:right;
+}
+
+#btn-oldcrossword 
+{
+    display: none;
+}

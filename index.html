@@ -1,0 +1,185 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Crossword</title>
+<meta http-equiv="Content-Type" content="text/html;charset=Windows-1251">
+<link rel="Stylesheet" type="text/css" href="assets/css/style.css" />
+<script type="text/javascript" src="assets/js/crossword.js"></script>
+<script type="text/javascript" src="assets/js/local-storage-extensions.js"></script>
+
+
+</head>
+<body>
+<div id="create-box">
+    <table>
+     <tr>
+        <td><span>Kръстословица:</span></td>
+        <td></td>
+    </tr>
+     <tr>
+        <td style="text-align: center;"><span>колони:</span></td>
+        <td><input id="col" type="text" style="width: 50px;" value="20"/></td>
+    </tr>
+    <tr>
+        <td style="text-align: center;"><span>редове:</span></td>
+        <td><input id="row" type="text" style="width: 50px;"  value="28"/></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td><input id="btn-create"type="button" value="Създай"/></td>
+    </tr>
+     <tr>
+        <td><input id="btn-oldcrossword"type="button" onclick="CreateOLdCrossword();";  value="Зареди Старата!"/></td>
+        <td></td>
+    </tr>
+    </table>
+</div>
+
+<div id="wrapper-content">
+</div>
+
+<div id="wrapper-tool">
+    <span>Дума :</span>
+    <textarea id="w-content" style="width :301px; height: 52px;" ></textarea><br />
+    <span>Описание :</span>
+    <textarea id="w-description"></textarea><br />
+    <span>Разположение :</span>
+     <form action="">
+        <input id="h" type="radio" name="Align" value="h" checked="checked" /><label for="h">Водоравно</label><br/>
+        <input id="v" type="radio" name="Align" value="v" /><label for="v">Отвесно</label>
+    </form>
+     <span>Започни от :</span>
+     <form action="">
+        <input id="r" type="radio" name="startFrom" value="r" checked="checked"/><label for="r">Дясно</label><br/>
+        <input id="d" type="radio" name="startFrom" value="d" /><label for="d">Долу</label><br/>
+        <input id="l" type="radio" name="startFrom" value="l" disabled="disabled" /><label for="l">Ляво</label>
+    </form>
+    <input style="margin-left:156px;" type="checkbox" id="backword" /> дума отзад напред 
+    <button style=" width: 90px; height: 40px;" type="button" onclick="InsertWord();">Добави</button>
+    <button style="margin-left:60px;" type="button" onclick="crossword.DeleteLastWord();">Премахни настояща</button>  
+    <button style="margin-left:155px;" type="button" onclick="ShowDictionary();" >Речник</button>
+    <button style="margin-left:15" type="button" onclick="crossword.Local.setWords()" >Запази</button>  
+    <span>Принтирай:</span><br /> 
+    <button type="button" onclick="Print();">Kръстословица</button>
+    <button type="button" onclick="crossword.WriteAnswers();">Описание</button>
+    <div id="ErrorMsg"></div>
+</div>
+<br />
+<textarea id="Text" style="width:760px;height:256px"></textarea>
+<div id="dictionary">
+<span>Речник:</span>
+<textarea id="text-dictinary"></textarea>
+<button type="button" onclick="document.getElementById('dictionary').style.display ='none';" >Добави</button>
+</div>
+
+<script type="text/javascript">
+    window.onbeforeunload = function () {
+        var msg = null;
+        if (crossword.arrayWords[1])
+            msg = "Ако изкате да запазите текущата Кръстословицата \n\n кликнето на бутона Запази \n\n или ше загубите въведените данни!";
+        if (crossword.Local.getWords())
+            if (crossword.Local.getWords()[crossword.count]) {
+                msg = null;
+            }
+        return msg;
+    };
+
+    if (crossword.Local.getWords()) {
+        document.getElementById("btn-oldcrossword").style.display = "block";
+    }
+    var dimension = crossword.Local.getDimension();
+    if (dimension) {
+        document.getElementById("row").value = dimension.row;
+        document.getElementById("col").value = dimension.col;
+    }
+
+    var create_botton = document.getElementById("btn-create");
+    create_botton.focus();
+    create_botton.onclick = function () {
+        var row = document.getElementById("row").value;
+        var col = document.getElementById("col").value;
+        crossword.Local.setDimension(row, col);
+        crossword.Local.ResetWords();
+        Create(row, col);
+    };
+
+    function Create(row, col) {
+        var wrapper = document.getElementById("wrapper-content");
+        var create_box = document.getElementById("create-box");
+        document.body.removeChild(create_box);
+        crossword.create(wrapper, row, col);
+        var tools = document.getElementById("wrapper-tool");
+        tools.style.display = "block";
+        tools.style.left = document.body.clientWidth - tools.offsetWidth - 10 + "px";
+    }
+
+    document.getElementsByTagName("form")[0].onclick = function () {
+        var align = document.getElementsByName("Align");
+        if (GetValue(align) == "h") {
+            if (document.getElementById("l").checked)
+                document.getElementById("r").checked = true;
+            document.getElementById("l").disabled = true;
+        }
+        else
+            document.getElementById("l").disabled = false;
+    };
+
+    function GetValue(radios) {
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) 
+                return radios[i].value;
+        }
+    }
+
+    function InsertWord() {
+        var w_content = document.getElementById("w-content");
+        var content = w_content.value;
+        var w_description = document.getElementById("w-description");
+        var description = w_description.value;
+
+        var align = GetValue(document.getElementsByName("Align"));
+        var startFrom = GetValue(document.getElementsByName("startFrom"));
+        var backword = document.getElementById("backword").checked;
+
+        crossword.word.content = content;
+        crossword.word.description = description;
+        crossword.word.align = align;
+        crossword.word.strartFrom = startFrom;
+        crossword.word.backword = backword;
+        if (crossword.ValidateWord()) 
+            crossword.insertWord();
+        else
+            return;
+    }
+
+    function Print() {
+        var tools = document.getElementById("wrapper-tool");
+        tools.style.display = "none";
+        var wrapper = document.getElementById("wrapper-content");
+        var boxs = wrapper.getElementsByClassName("letter");
+        for (var i = 0; i < boxs.length; i++) {
+            boxs[i].getElementsByTagName("p")[0].style.display = "none";
+        }
+        window.print();
+        setTimeout(function () {
+            tools.style.display = "block";
+        }, 300);
+        for (var i = 0; i < boxs.length; i++) {
+            boxs[i].getElementsByTagName("p")[0].style.display = "";
+        }
+    }
+
+    function ShowDictionary() {
+        var dictionary = document.getElementById('dictionary');
+        dictionary.style.display = 'block';
+        dictionary.style.top = document.body.scrollTop + 260 + "px";
+    }
+
+    function CreateOLdCrossword() {
+        var dimension = crossword.Local.getDimension();
+        Create(dimension.row, dimension.col);
+        crossword.Local.Write();
+    }
+	
+</script>
+</body>
+</html>
