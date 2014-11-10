@@ -1,4 +1,4 @@
-(function () {
+п»ї(function () {
     var cw = window.crossword;
     if (!cw) {
         cw = {};
@@ -137,11 +137,11 @@
     cw.ValidateWord = function () {
         cw.ErrorMsg = [];
         if (!cw.word.content)
-            cw.ErrorMsg.push("Не е виведена дума!");
+            cw.ErrorMsg.push("РќРµ Рµ РІРёРІРµРґРµРЅР° РґСѓРјР°!");
         if (!cw.word.description)
-            cw.ErrorMsg.push("Липсва описание!");
+            cw.ErrorMsg.push("Р›РёРїСЃРІР° РѕРїРёСЃР°РЅРёРµ!");
         if (cw.word.position.row === null || cw.word.position.col === null)
-            cw.ErrorMsg.push("Не е избрана позиция!");
+            cw.ErrorMsg.push("РќРµ Рµ РёР·Р±СЂР°РЅР° РїРѕР·РёС†РёСЏ!");
         if (!cw.ErrorMsg.length) {
             return true;
         }
@@ -154,7 +154,7 @@
     cw.CheckWordLength = function (row, col) {
         if (cw.OldWord.strartFrom == cw.word.strartFrom && cw.OldWord.position.col == cw.word.position.col
             && cw.OldWord.position.row == cw.word.position.row) {
-            cw.ErrorMsg.push("Думата не може да започва \n от същата позоция като предишната!");
+            cw.ErrorMsg.push("Р”СѓРјР°С‚Р° РЅРµ РјРѕР¶Рµ РґР° Р·Р°РїРѕС‡РІР° \n РѕС‚ СЃСЉС‰Р°С‚Р° РїРѕР·РѕС†РёСЏ РєР°С‚Рѕ РїСЂРµРґРёС€РЅР°С‚Р°!");
             return false;
         } else {
             if (cw.word.align == "h") {
@@ -167,30 +167,30 @@
             }
             var box = cw.getElement(_row + "." + _col);
             if (box.getElementsByTagName("span")[0]) {
-                cw.ErrorMsg.push("Текущата позоция вече е заета от друга дума !");
+                cw.ErrorMsg.push("РўРµРєСѓС‰Р°С‚Р° РїРѕР·РѕС†РёСЏ РІРµС‡Рµ Рµ Р·Р°РµС‚Р° РѕС‚ РґСЂСѓРіР° РґСѓРјР° !");
                 return false;
             }
         }
 
 
         if (cw.col <= col + cw.word.content.Length() && cw.word.align == "h") {
-            cw.ErrorMsg.push("Думата е прекалено дълга \n за да бъде добавена водоравно!");
+            cw.ErrorMsg.push("Р”СѓРјР°С‚Р° Рµ РїСЂРµРєР°Р»РµРЅРѕ РґСЉР»РіР° \n Р·Р° РґР° Р±СЉРґРµ РґРѕР±Р°РІРµРЅР° РІРѕРґРѕСЂР°РІРЅРѕ!");
             return false;
         }
         if (cw.row <= row + cw.word.content.Length() && cw.word.align == "v") {
-            cw.ErrorMsg.push("Думата е прекалено дълга \n за да бъде добавена отвесно!");
+            cw.ErrorMsg.push("Р”СѓРјР°С‚Р° Рµ РїСЂРµРєР°Р»РµРЅРѕ РґСЉР»РіР° \n Р·Р° РґР° Р±СЉРґРµ РґРѕР±Р°РІРµРЅР° РѕС‚РІРµСЃРЅРѕ!");
             return false;
         }
         for (var i = 0; i < cw.word.content.Length() ; i++) {
             cw.word.align == "h" ? col += 1 : row += 1;
             var el = cw.getElement(row + "." + col);
             if (!el) {
-                cw.ErrorMsg.push("Дума извън Kръстословицата!");
+                cw.ErrorMsg.push("Р”СѓРјР° РёР·РІСЉРЅ KСЂСЉСЃС‚РѕСЃР»РѕРІРёС†Р°С‚Р°!");
                 return false;
             }
             var p = el.firstElementChild;
             if (p.innerHTML != "" && p.innerHTML != cw.word.content.toArray()[i].toUpperCase() || cw.isDescription(el)) {
-                cw.ErrorMsg.push("Дадената дума променя някоя друга!");
+                cw.ErrorMsg.push("Р”Р°РґРµРЅР°С‚Р° РґСѓРјР° РїСЂРѕРјРµРЅСЏ РЅСЏРєРѕСЏ РґСЂСѓРіР°!");
                 return false;
             }
         }
@@ -398,16 +398,16 @@
 
     cw.WriteAnswers = function () {
         if (!cw.arrayWords[1]) {
-            alert("Kръстословица е празна!");
+            alert("KСЂСЉСЃС‚РѕСЃР»РѕРІРёС†Р° Рµ РїСЂР°Р·РЅР°!");
             return;
         }
         var textarea = document.getElementById("Text");
-        var fname = prompt("Напиши име на файл :", "file");
+        var fname = prompt("РќР°РїРёС€Рё РёРјРµ РЅР° С„Р°Р№Р» :", "file");
 
         textarea.value = "";
         cw.WriteDescription(textarea);
         cw.WriteDictionary(textarea);
-        textarea.value += "\r\n".WhiteSpace(45) + "ОТГОВОРИ";
+        textarea.value += "\r\n".WhiteSpace(45) + "РћРўР“РћР’РћР Р";
         cw.WriteAnswersHor(textarea);
         cw.WriteAnswersVer(textarea);
 
@@ -418,7 +418,7 @@
     cw.WriteDictionary = function (textarea) {
         var text = document.getElementById('text-dictinary').value;
         if (text) {
-            textarea.value += "  РЕЧНИК: " + text + "\r\n\r\n";
+            textarea.value += "  Р Р•Р§РќРРљ: " + text + "\r\n\r\n";
         }
     };
 
@@ -437,7 +437,7 @@
             var words = cw.arrayWords[key];
             for (var i = 0; i < words.length; i++) {
                 var obj = words[i];
-                var aling = obj.align == "h" ? "вод." : "отв.";
+                var aling = obj.align == "h" ? "РІРѕРґ." : "РѕС‚РІ.";
                 var len = ("".WhiteSpace(5) + obj.index + "." + aling + "".WhiteSpace(2)).length;
 
                 var description = obj.description.replace(/\n/mg, "\n" + "".WhiteSpace(len));
@@ -455,7 +455,7 @@
     };
 
     cw.WriteAnswersHor = function (textarea) {
-        textarea.value += "\n  ВОДОРАВНО: ";
+        textarea.value += "\n  Р’РћР”РћР РђР’РќРћ: ";
         var count = 12;
         for (var row = 0; row < cw.row; row++) {
             for (var col = 0; col < cw.col; col++) {
@@ -498,7 +498,7 @@
     };
 
     cw.WriteAnswersVer = function (textarea) {
-        textarea.value += "\n  ОТВЕСНО: ";
+        textarea.value += "\n  РћРўР’Р•РЎРќРћ: ";
         var count = 12;
         for (var col = 0; col < cw.col; col++) {
             for (var row = 0; row < cw.row; row++) {
@@ -550,7 +550,7 @@
 
     cw.DeleteLastWord = function () {
         if (!cw.OldWord.content) {
-            alert("Настоящата дума липсва или вече е премахната!");
+            alert("РќР°СЃС‚РѕСЏС‰Р°С‚Р° РґСѓРјР° Р»РёРїСЃРІР° РёР»Рё РІРµС‡Рµ Рµ РїСЂРµРјР°С…РЅР°С‚Р°!");
             return;
         }
         var row = cw.OldWord.position.row;

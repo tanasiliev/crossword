@@ -1,4 +1,4 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
+п»ї<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Crossword</title>
 <meta http-equiv="Content-Type" content="text/html;charset=Windows-1251">
@@ -12,23 +12,23 @@
 <div id="create-box">
     <table>
      <tr>
-        <td><span>Kръстословица:</span></td>
+        <td><span>KСЂСЉСЃС‚РѕСЃР»РѕРІРёС†Р°:</span></td>
         <td></td>
     </tr>
      <tr>
-        <td style="text-align: center;"><span>колони:</span></td>
+        <td style="text-align: center;"><span>РєРѕР»РѕРЅРё:</span></td>
         <td><input id="col" type="text" style="width: 50px;" value="20"/></td>
     </tr>
     <tr>
-        <td style="text-align: center;"><span>редове:</span></td>
+        <td style="text-align: center;"><span>СЂРµРґРѕРІРµ:</span></td>
         <td><input id="row" type="text" style="width: 50px;"  value="28"/></td>
     </tr>
     <tr>
         <td></td>
-        <td><input id="btn-create"type="button" value="Създай"/></td>
+        <td><input id="btn-create"type="button" value="РЎСЉР·РґР°Р№"/></td>
     </tr>
      <tr>
-        <td><input id="btn-oldcrossword"type="button" onclick="CreateOLdCrossword()"; value="Зареди Старата!"/></td>
+        <td><input id="btn-oldcrossword"type="button" onclick="CreateOLdCrossword()" value="Р—Р°СЂРµРґРё РЎС‚Р°СЂР°С‚Р°!"/></td>
         <td></td>
     </tr>
     </table>
@@ -38,44 +38,44 @@
 </div>
 
 <div id="wrapper-tool">
-    <span>Дума :</span>
+    <span>Р”СѓРјР° :</span>
     <textarea id="w-content" style="width :301px; height: 52px;" ></textarea><br />
-    <span>Описание :</span>
+    <span>РћРїРёСЃР°РЅРёРµ :</span>
     <textarea id="w-description"></textarea><br />
-    <span>Разположение :</span>
+    <span>Р Р°Р·РїРѕР»РѕР¶РµРЅРёРµ :</span>
      <form action="">
-        <input id="h" type="radio" name="Align" value="h" checked="checked" /><label for="h">Водоравно</label><br/>
-        <input id="v" type="radio" name="Align" value="v" /><label for="v">Отвесно</label>
+        <input id="h" type="radio" name="Align" value="h" checked="checked" /><label for="h">Р’РѕРґРѕСЂР°РІРЅРѕ</label><br/>
+        <input id="v" type="radio" name="Align" value="v" /><label for="v">РћС‚РІРµСЃРЅРѕ</label>
     </form>
-     <span>Започни от :</span>
+     <span>Р—Р°РїРѕС‡РЅРё РѕС‚ :</span>
      <form action="">
-        <input id="r" type="radio" name="startFrom" value="r" checked="checked"/><label for="r">Дясно</label><br/>
-        <input id="d" type="radio" name="startFrom" value="d" /><label for="d">Долу</label><br/>
-        <input id="l" type="radio" name="startFrom" value="l" disabled="disabled" /><label for="l">Ляво</label>
+        <input id="r" type="radio" name="startFrom" value="r" checked="checked"/><label for="r">Р”СЏСЃРЅРѕ</label><br/>
+        <input id="d" type="radio" name="startFrom" value="d" /><label for="d">Р”РѕР»Сѓ</label><br/>
+        <input id="l" type="radio" name="startFrom" value="l" disabled="disabled" /><label for="l">Р›СЏРІРѕ</label>
     </form>
-    <input style="margin-left:156px;" type="checkbox" id="backword" /> дума отзад напред 
-    <button style=" width: 90px; height: 40px;" type="button" onclick="InsertWord();">Добави</button>
-    <button style="margin-left:60px;" type="button" onclick="crossword.DeleteLastWord();">Премахни настояща</button>  
-    <button style="margin-left:155px;" type="button" onclick="ShowDictionary();" >Речник</button>
-    <button style="margin-left:15" type="button" onclick="crossword.Local.setWords()" >Запази</button>  
-    <span>Принтирай:</span><br /> 
-    <button type="button" onclick="Print();">Kръстословица</button>
-    <button type="button" onclick="crossword.WriteAnswers();">Описание</button>
+    <input style="margin-left:156px;" type="checkbox" id="backword" /> РґСѓРјР° РѕС‚Р·Р°Рґ РЅР°РїСЂРµРґ 
+    <button style=" width: 90px; height: 40px;" type="button" onclick="InsertWord();">Р”РѕР±Р°РІРё</button>
+    <button style="margin-left:60px;" type="button" onclick="crossword.DeleteLastWord();">РџСЂРµРјР°С…РЅРё РЅР°СЃС‚РѕСЏС‰Р°</button>  
+    <button style="margin-left:155px;" type="button" onclick="ShowDictionary();" >Р РµС‡РЅРёРє</button>
+    <button style="margin-left:15" type="button" onclick="crossword.Local.setWords()" >Р—Р°РїР°Р·Рё</button>  
+    <span>РџСЂРёРЅС‚РёСЂР°Р№:</span><br /> 
+    <button type="button" onclick="Print();">KСЂСЉСЃС‚РѕСЃР»РѕРІРёС†Р°</button>
+    <button type="button" onclick="crossword.WriteAnswers();">РћРїРёСЃР°РЅРёРµ</button>
     <div id="ErrorMsg"></div>
 </div>
 <br />
 <textarea id="Text" style="width:760px;height:256px"></textarea>
 <div id="dictionary">
-<span>Речник:</span>
+<span>Р РµС‡РЅРёРє:</span>
 <textarea id="text-dictinary"></textarea>
-<button type="button" onclick="document.getElementById('dictionary').style.display ='none';" >Добави</button>
+<button type="button" onclick="document.getElementById('dictionary').style.display ='none';" >Р”РѕР±Р°РІРё</button>
 </div>
 
 <script type="text/javascript">
     window.onbeforeunload = function () {
         var msg = null;
         if (crossword.arrayWords[1])
-            msg = "Ако изкате да запазите текущата Кръстословицата \n\n кликнето на бутона Запази \n\n или ше загубите въведените данни!";
+            msg = "РђРєРѕ РёР·РєР°С‚Рµ РґР° Р·Р°РїР°Р·РёС‚Рµ С‚РµРєСѓС‰Р°С‚Р° РљСЂСЉСЃС‚РѕСЃР»РѕРІРёС†Р°С‚Р° \n\n РєР»РёРєРЅРµС‚Рѕ РЅР° Р±СѓС‚РѕРЅР° Р—Р°РїР°Р·Рё \n\n РёР»Рё С€Рµ Р·Р°РіСѓР±РёС‚Рµ РІСЉРІРµРґРµРЅРёС‚Рµ РґР°РЅРЅРё!";
         if (crossword.Local.getWords())
             if (crossword.Local.getWords()[crossword.count]) {
                 msg = null;
