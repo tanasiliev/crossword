@@ -1,3 +1,7 @@
+textarea {
+    resize: none;
+}
+
 #create-box
 {   
     border: solid 1px silver;
